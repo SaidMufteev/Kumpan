@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <!-- Логотип и название -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo_kumpan"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kumpan"
+            android:textSize="36sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_white"
+            android:shadowColor="#40000000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="6"
+            android:letterSpacing="0.03" />
+
+    </LinearLayout>
+
+    <!-- Приветствие -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_welcome"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_text_dark"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Поле Логин -->
+    <EditText
+        android:id="@+id/etLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/login_hint"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:background="@drawable/edit_text_border"
+        android:textColor="@color/color_text_dark"
+        android:textColorHint="@color/color_gray"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:id="@+id/tvLoginError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Некорректный формат логина :("
+        android:textSize="12sp"
+        android:textColor="@color/color_red"
+        android:visibility="gone"
+        android:layout_marginBottom="15dp" />
+
+    <!-- Поле Пароль -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_hint"
+        android:textSize="16sp"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:background="@drawable/edit_text_border"
+        android:textColor="@color/color_text_dark"
+        android:textColorHint="@color/color_gray"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:id="@+id/tvPasswordError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Некорректный пароль :("
+        android:textSize="12sp"
+        android:textColor="@color/color_red"
+        android:visibility="gone"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Кнопка Войти (зелёная, текст тёмный) -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_button"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:backgroundTint="@color/color_light_green"
+        android:textColor="@color/color_dark_green"
+        android:padding="16dp"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Текст "Впервые у нас?" -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/first_time"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_text_dark"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp" />
+
+    <!-- Кнопка Зарегистрироваться (чёрная, текст зелёный) -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:backgroundTint="@color/color_black"
+        android:textColor="@color/color_light_green"
+        android:padding="16dp"
+        android:layout_marginBottom="40dp" />
+
+    <!-- Ссылка "Возникли трудности?" -->
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:textSize="14sp"
+        android:textColor="@color/color_text_dark"
+        android:layout_gravity="center" />
+
+</LinearLayout>

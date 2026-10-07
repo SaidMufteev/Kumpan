@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Kumpan</string>
+
+    <!-- Вход -->
+    <string name="login_welcome">Добро пожаловать!\nМы рады вас видеть снова :)</string>
+    <string name="login_hint">Логин (код)</string>
+    <string name="password_hint">Пароль</string>
+    <string name="login_button">Войти</string>
+    <string name="first_time">Впервые у нас?</string>
+    <string name="register_button">Зарегистрироваться</string>
+    <string name="forgot_password">Возникли трудности?</string>
+
+    <!-- Регистрация -->
+    <string name="register_welcome">Добро пожаловать!\nДавайте познакомимся :)</string>
+    <string name="confirm_password_hint">Подтвердите пароль</string>
+    <string name="already_with_us">Уже с нами?</string>
+    <string name="login_link">Войти</string>
+
+    <!-- Главный экран -->
+    <string name="my_schedule">Мой График</string>
+    <string name="today">Сегодня</string>
+    <string name="position_bar">Позиция: Бар</string>
+    <string name="start_shift">Начать смену</string>
+    <string name="end_shift">Завершить смену</string>
+    <string name="tasks_title">Задачи на сегодня</string>
+    <string name="knowledge_title">Обучение</string>
+    <string name="ttk_title">ТТК алко</string>
+    <string name="back_button">Назад</string>
+    <string name="tests_title">Доступные тесты</string>
+    <string name="start_button">Начать</string>
+    <string name="settings_title">Настройки</string>
+</resources>

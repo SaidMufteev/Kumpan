@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="График" />
+
+    <item
+        android:id="@+id/navigation_tasks"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Задачи" />
+
+    <item
+        android:id="@+id/navigation_knowledge"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Обучение" />
+
+    <item
+        android:id="@+id/navigation_tests"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="Тесты" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Профиль" />
+
+</menu>
