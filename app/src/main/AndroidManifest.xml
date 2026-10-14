@@ -29,40 +29,32 @@
         <!-- RegisterActivity -->
         <activity android:name=".RegisterActivity" android:exported="false" />
 
-        <!-- TtkListActivity — список ТТК -->
-        <activity
-            android:name=".TtkListActivity"
-            android:exported="false" />
+        <!-- TtkListActivity -->
+        <activity android:name=".TtkListActivity" android:exported="false" />
 
-        <!-- CocktailDetailActivity — карточка коктейля -->
-        <activity
-            android:name=".CocktailDetailActivity"
-            android:exported="false" />
+        <!-- CocktailDetailActivity -->
+        <activity android:name=".CocktailDetailActivity" android:exported="false" />
 
-        <!-- DessertDetailActivity — карточка десерта -->
-        <activity
-            android:name=".DessertDetailActivity"
-            android:exported="false" />
+        <!-- DessertDetailActivity -->
+        <activity android:name=".DessertDetailActivity" android:exported="false" />
 
-        <!-- SeasonActivity — выбор сезона -->
-        <activity
-            android:name=".SeasonActivity"
-            android:exported="false" />
+        <!-- SeasonActivity -->
+        <activity android:name=".SeasonActivity" android:exported="false" />
 
-        <activity
-            android:name=".GrainDetailActivity"
-            android:exported="false" />
+        <!-- GrainDetailActivity -->
+        <activity android:name=".GrainDetailActivity" android:exported="false" />
 
-        <!-- Активность вопросов теста -->
-        <activity
-            android:name=".QuizActivity"
-            android:exported="false" />
+        <!-- QuizActivity -->
+        <activity android:name=".QuizActivity" android:exported="false" />
 
-        <!-- Активность результата теста -->
-        <activity
-            android:name=".QuizResultActivity"
-            android:exported="false" />
+        <!-- QuizResultActivity -->
+        <activity android:name=".QuizResultActivity" android:exported="false" />
+
+        <!-- EmployeeListActivity -->
+        <activity android:name=".EmployeeListActivity" android:exported="false" />
+
+        <!-- Экран управления графиком -->
+        <activity android:name=".ScheduleManagerActivity" android:exported="false" />
 
     </application>
-
 </manifest>

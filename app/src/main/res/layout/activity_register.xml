@@ -7,14 +7,14 @@
     android:padding="24dp"
     android:gravity="center">
 
-    <!-- Логотип и название -->
+    <!-- Логотип + название -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="30dp">
 
         <ImageView
             android:layout_width="60dp"
@@ -26,14 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kumpan"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:textStyle="bold|italic"
-            android:textColor="@color/color_white"
-            android:shadowColor="#40000000"
-            android:shadowDx="3"
-            android:shadowDy="3"
-            android:shadowRadius="6"
-            android:letterSpacing="0.03" />
+            android:textColor="@color/color_white" />
 
     </LinearLayout>
 
@@ -41,19 +36,34 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_welcome"
+        android:text="Добро пожаловать!\nДавайте познакомимся :)"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         android:textColor="@color/color_text_dark"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="20dp" />
 
-    <!-- Поле Логин -->
+    <!-- ДОБАВЛЕНО: Поле ФИО -->
+    <EditText
+        android:id="@+id/etFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Фамилия и имя (например: Иванов Иван)"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:background="@drawable/edit_text_border"
+        android:textColor="@color/color_text_dark"
+        android:textColorHint="@color/color_gray"
+        android:layout_marginBottom="15dp" />
+
+    <!-- Поле Логин (код) -->
     <EditText
         android:id="@+id/etLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/login_hint"
+        android:hint="Рабочий код (4 цифры)"
         android:textSize="16sp"
+        android:inputType="number"
+        android:maxLength="4"
         android:padding="16dp"
         android:background="@drawable/edit_text_border"
         android:textColor="@color/color_text_dark"
@@ -65,23 +75,25 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/password_hint"
+        android:hint="Пароль (4 цифры)"
         android:textSize="16sp"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
+        android:maxLength="4"
         android:padding="16dp"
         android:background="@drawable/edit_text_border"
         android:textColor="@color/color_text_dark"
         android:textColorHint="@color/color_gray"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="5dp" />
 
     <!-- Поле Подтверждение пароля -->
     <EditText
         android:id="@+id/etConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/confirm_password_hint"
+        android:hint="Подтвердите пароль"
         android:textSize="16sp"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
+        android:maxLength="4"
         android:padding="16dp"
         android:background="@drawable/edit_text_border"
         android:textColor="@color/color_text_dark"
@@ -89,60 +101,49 @@
         android:layout_marginBottom="5dp" />
 
     <TextView
-        android:id="@+id/tvConfirmError"
+        android:id="@+id/tvError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пароли не совпадают :("
+        android:text="Ошибка"
         android:textSize="12sp"
         android:textColor="@color/color_red"
         android:visibility="gone"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="15dp" />
 
-    <!-- Кнопка Зарегистрироваться (зелёная) -->
+    <!-- Кнопка Зарегистрироваться -->
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_button"
+        android:text="Зарегистрироваться"
         android:textSize="16sp"
         android:textStyle="bold|italic"
         android:backgroundTint="@color/color_light_green"
         android:textColor="@color/color_dark_green"
         android:padding="16dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="20dp" />
 
     <!-- Текст "Уже с нами?" -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/already_with_us"
+        android:text="Уже с нами?"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         android:textColor="@color/color_text_dark"
         android:layout_gravity="center"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="10dp" />
 
-    <!-- Кнопка Войти (чёрная) -->
+    <!-- Кнопка Войти -->
     <Button
         android:id="@+id/btnLoginLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_link"
+        android:text="Войти"
         android:textSize="16sp"
         android:textStyle="bold|italic"
         android:backgroundTint="@color/color_black"
         android:textColor="@color/color_light_green"
-        android:padding="16dp"
-        android:layout_marginBottom="40dp" />
-
-    <!-- Ссылка "Возникли трудности?" -->
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        android:textSize="14sp"
-        android:textColor="@color/color_text_dark"
-        android:layout_gravity="center" />
+        android:padding="16dp" />
 
 </LinearLayout>

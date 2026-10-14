@@ -1,11 +1,14 @@
 package com.example.kumpan;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class DessertDetailActivity extends AppCompatActivity {
 
@@ -14,48 +17,53 @@ public class DessertDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dessert_detail);
 
-        // Получаем позицию десерта
-        int position = getIntent().getIntExtra("position", 0);
+        String collectionName = getIntent().getStringExtra("collectionName");
+        String docId = getIntent().getStringExtra("docId");
+        String category = getIntent().getStringExtra("category");
 
-        // Получаем десерт
-        ArrayList<DessertItem> items = DessertData.getItems();
-        DessertItem item = items.get(position);
-
-        // Кнопка "Назад"
         TextView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        // Название
-        TextView tvTitle = findViewById(R.id.tvDetailTitle);
-        tvTitle.setText(item.name);
-
-        // Состав
         LinearLayout layoutIngredients = findViewById(R.id.layoutIngredients);
-        for (String ingredient : item.ingredients) {
-            TextView tv = new TextView(this);
-            tv.setText(ingredient);
-            tv.setTextSize(15);
-            tv.setTextColor(0xFF2D3436);
+        TextView tvStorage = findViewById(R.id.tvStorage);
+        TextView tvAllergens = findViewById(R.id.tvAllergens);
+        TextView tvGuestDesc = findViewById(R.id.tvGuestDescription);
+        TextView tvTitle = findViewById(R.id.tvDetailTitle);
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.bottomMargin = 8;
-            tv.setLayoutParams(params);
+        if (docId == null) { finish(); return; }
 
-            layoutIngredients.addView(tv);
+        SharedPreferences prefs = getSharedPreferences("KumpanPrefs", MODE_PRIVATE);
+        String userId = prefs.getString("user_login", "");
+
+        if (category != null && !userId.isEmpty()) {
+            FirebaseHelper.markAsRead(userId, category, docId);
         }
 
-        // Срок хранения
-        TextView tvStorage = findViewById(R.id.tvStorage);
-        tvStorage.setText(item.storage);
+        FirebaseHelper.loadTtkDetail(collectionName, docId)
+                .addOnSuccessListener(doc -> {
+                    if (!doc.exists()) return;
+                    tvTitle.setText(doc.getString("name"));
 
-        // Аллергены
-        TextView tvAllergens = findViewById(R.id.tvAllergens);
-        tvAllergens.setText(item.allergens);
+                    List<String> ingredients = (List<String>) doc.get("ingredients");
+                    if (ingredients != null) {
+                        for (String ing : ingredients) {
+                            TextView tv = new TextView(this);
+                            tv.setText(ing);
+                            tv.setTextSize(15);
+                            tv.setTextColor(0xFF2D3436);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT);
+                            params.bottomMargin = 8;
+                            tv.setLayoutParams(params);
+                            layoutIngredients.addView(tv);
+                        }
+                    }
 
-        // Описание для гостя
-        TextView tvGuest = findViewById(R.id.tvGuestDescription);
-        tvGuest.setText(item.guestDescription);
+                    tvStorage.setText(doc.getString("storage") != null ? doc.getString("storage") : "—");
+                    tvAllergens.setText(doc.getString("allergens") != null ? doc.getString("allergens") : "—");
+                    tvGuestDesc.setText(doc.getString("guestDescription") != null ? doc.getString("guestDescription") : "—");
+                })
+                .addOnFailureListener(e -> Toast.makeText(this, "Ошибка загрузки", Toast.LENGTH_SHORT).show());
     }
 }

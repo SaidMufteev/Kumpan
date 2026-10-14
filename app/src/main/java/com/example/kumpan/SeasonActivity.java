@@ -1,23 +1,32 @@
 package com.example.kumpan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SeasonActivity extends AppCompatActivity {
+
+    private String currentDepartment = "bar";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_season);
 
-        // Кнопка "Назад"
+        SharedPreferences prefs = getSharedPreferences("KumpanPrefs", MODE_PRIVATE);
+        String role = prefs.getString("user_role", "guest");
+        if ("cook".equals(role) || "chef".equals(role)) {
+            currentDepartment = "kitchen";
+        }
+
         TextView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        // 4 кнопки сезонов
         LinearLayout btnSummer = findViewById(R.id.btnSummer);
         LinearLayout btnAutumn = findViewById(R.id.btnAutumn);
         LinearLayout btnWinter = findViewById(R.id.btnWinter);
@@ -29,12 +38,10 @@ public class SeasonActivity extends AppCompatActivity {
         btnSpring.setOnClickListener(v -> openSeasonList("season_spring"));
     }
 
-    /**
-     * Открывает список напитков для выбранного сезона
-     */
     private void openSeasonList(String seasonCategory) {
         Intent intent = new Intent(SeasonActivity.this, TtkListActivity.class);
         intent.putExtra("category", seasonCategory);
+        intent.putExtra("department", currentDepartment); // Передаем отдел
         startActivity(intent);
     }
 }

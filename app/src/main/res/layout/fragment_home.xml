@@ -1,329 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/color_background"
-    android:paddingTop="40dp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="16dp">
+    android:fillViewport="true">
 
-    <!-- Заголовок -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/my_schedule"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        android:textColor="@color/color_text_dark"
-        android:layout_marginBottom="20dp" />
-
-    <!-- ===== Дни недели ===== -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
-
-        <!-- ПН -->
-        <LinearLayout
-            android:id="@+id/dayMon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/card_green"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="ПН" android:textSize="12sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="2" android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="🕐" android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- ВТ -->
-        <LinearLayout
-            android:id="@+id/dayTue"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/card_white"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="ВТ" android:textSize="12sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="3" android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
-        </LinearLayout>
-
-        <!-- СР -->
-        <LinearLayout
-            android:id="@+id/dayWed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/card_white"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="СР" android:textSize="12sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="4" android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="🕐" android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- ЧТ -->
-        <LinearLayout
-            android:id="@+id/dayThu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/card_white"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="ЧТ" android:textSize="12sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="5" android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="🕐" android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- ПТ -->
-        <LinearLayout
-            android:id="@+id/dayFri"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/card_white"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="ПТ" android:textSize="12sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="6" android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
-        </LinearLayout>
-
-        <!-- СБ -->
-        <LinearLayout
-            android:id="@+id/daySat"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/card_white"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="СБ" android:textSize="12sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="7" android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="🕐" android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- ВС -->
-        <LinearLayout
-            android:id="@+id/daySun"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/card_white"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="ВС" android:textSize="12sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="8" android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- ===== РАСТЯЖКА (пустое место) ===== -->
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <!-- ===== Вторая карточка (появляется над основной) ===== -->
-    <LinearLayout
-        android:id="@+id/cardOtherDay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="170dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/card_secondary"
-        android:padding="24dp"
-        android:layout_marginBottom="12dp"
-        android:visibility="gone">
+        android:paddingTop="40dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
-        <TextView android:id="@+id/tvOtherTitle"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Понедельник" android:textSize="16sp" android:textStyle="bold|italic"
-            android:textColor="@color/color_text_secondary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_schedule"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_text_dark"
+            android:layout_marginBottom="20dp" />
 
+        <!-- Дни недели (теперь с ID для кликов) -->
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <!-- ПН -->
+            <LinearLayout android:id="@+id/dayMon" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/card_green" android:paddingTop="16dp" android:paddingBottom="16dp" android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ПН" android:textSize="12sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+                <TextView android:id="@+id/tvDate1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" android:textSize="18sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+                <TextView android:id="@+id/tvIcon1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+            <!-- ВТ -->
+            <LinearLayout android:id="@+id/dayTue" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/card_white" android:paddingTop="16dp" android:paddingBottom="16dp" android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ВТ" android:textSize="12sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+                <TextView android:id="@+id/tvDate2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" android:textSize="18sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+                <TextView android:id="@+id/tvIcon2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+            <!-- СР -->
+            <LinearLayout android:id="@+id/dayWed" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/card_white" android:paddingTop="16dp" android:paddingBottom="16dp" android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="СР" android:textSize="12sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+                <TextView android:id="@+id/tvDate3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4" android:textSize="18sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+                <TextView android:id="@+id/tvIcon3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+            <!-- ЧТ -->
+            <LinearLayout android:id="@+id/dayThu" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/card_white" android:paddingTop="16dp" android:paddingBottom="16dp" android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ЧТ" android:textSize="12sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+                <TextView android:id="@+id/tvDate4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5" android:textSize="18sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+                <TextView android:id="@+id/tvIcon4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+            <!-- ПТ -->
+            <LinearLayout android:id="@+id/dayFri" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/card_white" android:paddingTop="16dp" android:paddingBottom="16dp" android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ПТ" android:textSize="12sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+                <TextView android:id="@+id/tvDate5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="6" android:textSize="18sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+                <TextView android:id="@+id/tvIcon5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+            <!-- СБ -->
+            <LinearLayout android:id="@+id/daySat" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/card_white" android:paddingTop="16dp" android:paddingBottom="16dp" android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="СБ" android:textSize="12sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+                <TextView android:id="@+id/tvDate6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7" android:textSize="18sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+                <TextView android:id="@+id/tvIcon6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+            <!-- ВС -->
+            <LinearLayout android:id="@+id/daySun" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="@drawable/card_white" android:paddingTop="16dp" android:paddingBottom="16dp" android:clickable="true" android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ВС" android:textSize="12sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+                <TextView android:id="@+id/tvDate7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="8" android:textSize="18sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+                <TextView android:id="@+id/tvIcon7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textSize="16sp" android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Растяжка -->
+        <Space
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1" />
+
+        <!-- ===== ВТОРАЯ КАРТОЧКА (для других дней) ===== -->
+        <LinearLayout
+            android:id="@+id/cardOtherDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="170dp"
             android:orientation="vertical"
-            android:gravity="center">
+            android:background="@drawable/card_secondary"
+            android:padding="24dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone">
 
-            <TextView android:id="@+id/tvOtherTime"
+            <TextView
+                android:id="@+id/tvOtherTitle"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="16:00 - 23:00" android:textSize="24sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_secondary"
-                android:layout_marginBottom="5dp" />
-
-            <TextView android:id="@+id/tvOtherDuration"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="(7 часов)" android:textSize="14sp" android:textStyle="italic"
+                android:text="Понедельник" android:textSize="16sp" android:textStyle="bold|italic"
                 android:textColor="@color/color_text_secondary" />
 
-            <TextView android:id="@+id/tvOtherDayOff"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="У тебя выходной, радуйся!"
-                android:textSize="18sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_text_secondary"
-                android:visibility="gone" />
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="0dp"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
 
+                <TextView
+                    android:id="@+id/tvOtherTime"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="16:00 - 23:00" android:textSize="24sp" android:textStyle="bold|italic"
+                    android:textColor="@color/color_text_secondary" android:layout_marginBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/tvOtherDuration"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="(7 часов)" android:textSize="14sp" android:textStyle="italic"
+                    android:textColor="@color/color_text_secondary" />
+
+                <TextView
+                    android:id="@+id/tvOtherDayOff"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="У тебя выходной, радуйся!"
+                    android:textSize="18sp" android:textStyle="bold|italic"
+                    android:textColor="@color/color_text_secondary" android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvOtherPosition"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Позиция: Бар" android:textSize="16sp" android:textStyle="bold|italic"
+                android:textColor="@color/color_text_secondary" />
         </LinearLayout>
 
-        <TextView android:id="@+id/tvOtherPosition"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Позиция: Бар" android:textSize="16sp" android:textStyle="bold|italic"
-            android:textColor="@color/color_text_secondary" />
-
-    </LinearLayout>
-
-    <!-- ===== Основная карточка "Сегодня" ===== -->
-    <LinearLayout
-        android:id="@+id/cardToday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="170dp"
-        android:orientation="vertical"
-        android:background="@drawable/card_dark"
-        android:padding="24dp"
-        android:layout_marginBottom="12dp">
-
-        <TextView android:id="@+id/tvTodayTitle"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="@string/today" android:textSize="16sp" android:textStyle="bold|italic"
-            android:textColor="@color/color_light_green" />
-
+        <!-- ===== КАРТОЧКА "СЕГОДНЯ" ===== -->
         <LinearLayout
+            android:id="@+id/cardToday"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="170dp"
             android:orientation="vertical"
-            android:gravity="center">
+            android:background="@drawable/card_dark"
+            android:padding="24dp"
+            android:layout_marginBottom="12dp">
 
-            <TextView android:id="@+id/tvTodayTime"
+            <TextView
+                android:id="@+id/tvTodayTitle"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="16:00 - 23:00" android:textSize="24sp" android:textStyle="bold|italic"
-                android:textColor="@color/color_light_green"
-                android:layout_marginBottom="5dp" />
-
-            <TextView android:id="@+id/tvTodayDuration"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="(7 часов)" android:textSize="14sp" android:textStyle="italic"
+                android:text="Сегодня" android:textSize="16sp" android:textStyle="bold|italic"
                 android:textColor="@color/color_light_green" />
 
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="0dp"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvTodayTime"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Нет смены" android:textSize="24sp" android:textStyle="bold|italic"
+                    android:textColor="@color/color_light_green" android:layout_marginBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/tvTodayDuration"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Отдыхай :)" android:textSize="14sp" android:textStyle="italic"
+                    android:textColor="@color/color_light_green" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTodayPosition"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="" android:textSize="16sp" android:textStyle="bold|italic"
+                android:textColor="@color/color_light_green" />
         </LinearLayout>
 
-        <TextView android:id="@+id/tvTodayPosition"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="@string/position_bar" android:textSize="16sp" android:textStyle="bold|italic"
-            android:textColor="@color/color_light_green" />
+        <Button
+            android:id="@+id/btnStartShift" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/start_shift" android:textSize="18sp" android:textStyle="bold|italic"
+            android:backgroundTint="@color/color_light_green" android:textColor="@color/color_dark_green"
+            android:padding="16dp" android:layout_marginBottom="10dp" />
 
+        <Button
+            android:id="@+id/btnEndShift" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/end_shift" android:textSize="18sp" android:textStyle="bold|italic"
+            android:backgroundTint="@color/color_light_green" android:textColor="@color/color_dark_green"
+            android:padding="16dp" />
     </LinearLayout>
-
-    <!-- ===== Кнопки ===== -->
-    <Button
-        android:id="@+id/btnStartShift"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/start_shift"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        android:backgroundTint="@color/color_light_green"
-        android:textColor="@color/color_dark_green"
-        android:padding="16dp"
-        android:layout_marginBottom="10dp" />
-
-    <Button
-        android:id="@+id/btnEndShift"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/end_shift"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        android:backgroundTint="@color/color_light_green"
-        android:textColor="@color/color_dark_green"
-        android:padding="16dp" />
-
-</LinearLayout>
+</ScrollView>

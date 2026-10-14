@@ -1,336 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/color_background"
-    android:paddingTop="40dp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="16dp">
+    android:fillViewport="true">
 
-    <!-- ========== ЗАГОЛОВОК ========== -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/knowledge_title"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        android:textColor="@color/color_text_dark"
-        android:layout_marginBottom="20dp" />
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
-    <!-- ========== РЯД 1: Алко + Десерты ========== -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_marginBottom="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/knowledge_title"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_text_dark"
+            android:layout_marginBottom="20dp" />
 
-        <!-- Ячейка "Алко" -->
+        <!-- ================= РЯД 1 (Алко + Десерты) ================= -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginEnd="6dp">
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
-            <!-- Карточка -->
+            <!-- Ячейка Алко -->
             <LinearLayout
-                android:id="@+id/cardAlco"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:id="@+id/cellAlco"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@drawable/knowledge_card"
-                android:padding="12dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <!-- Эмодзи -->
-                <TextView
+                android:layout_marginEnd="6dp">
+                <LinearLayout
+                    android:id="@+id/cardAlco"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="🍷"
-                    android:textSize="48sp"
-                    android:gravity="center" />
-
-                <!-- Прогресс-бар -->
-                <ProgressBar
-                    android:id="@+id/pbAlco"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:progressDrawable="@drawable/progress_knowledge"
-                    android:progress="40"
-                    android:max="100" />
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="🍷" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbAlco" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Алко" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
             </LinearLayout>
 
-            <!-- Подпись под карточкой -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Алко"
-                android:textSize="14sp"
-                android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp" />
+            <!-- Ячейка Десерты -->
+            <LinearLayout
+                android:id="@+id/cellDesserts"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="6dp">
+                <LinearLayout
+                    android:id="@+id/cardDesserts"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="🍩" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbDesserts" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Десерты" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Ячейка "Десерты" -->
+        <!-- ================= РЯД 2 (Кофе + Заготовки) ================= -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="6dp">
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
             <LinearLayout
-                android:id="@+id/cardDesserts"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:id="@+id/cellCoffee"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@drawable/knowledge_card"
-                android:padding="12dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
+                android:layout_marginEnd="6dp">
+                <LinearLayout
+                    android:id="@+id/cardCoffee"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="🍩"
-                    android:textSize="48sp"
-                    android:gravity="center" />
-
-                <ProgressBar
-                    android:id="@+id/pbDesserts"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:progressDrawable="@drawable/progress_knowledge"
-                    android:progress="25"
-                    android:max="100" />
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="☕" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbCoffee" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Кофе/Чай" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Десерты"
-                android:textSize="14sp"
-                android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- ========== РЯД 2: Кофе/Чай + Заготовки ========== -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_marginBottom="12dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginEnd="6dp">
-
             <LinearLayout
-                android:id="@+id/cardCoffee"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:id="@+id/cellPrep"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@drawable/knowledge_card"
-                android:padding="12dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
+                android:layout_marginStart="6dp">
+                <LinearLayout
+                    android:id="@+id/cardPrep"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="☕"
-                    android:textSize="48sp"
-                    android:gravity="center" />
-
-                <ProgressBar
-                    android:id="@+id/pbCoffee"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:progressDrawable="@drawable/progress_knowledge"
-                    android:progress="100"
-                    android:max="100" />
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="🍋" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbPrep" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Заготовки" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Кофе/Чай"
-                android:textSize="14sp"
-                android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp" />
         </LinearLayout>
 
+        <!-- ================= РЯД 3 (Сезонка + Зерно) ================= -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="6dp">
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
             <LinearLayout
-                android:id="@+id/cardPrep"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:id="@+id/cellSeason"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@drawable/knowledge_card"
-                android:padding="12dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
+                android:layout_marginEnd="6dp">
+                <LinearLayout
+                    android:id="@+id/cardSeason"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="🍋"
-                    android:textSize="48sp"
-                    android:gravity="center" />
-
-                <ProgressBar
-                    android:id="@+id/pbPrep"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:progressDrawable="@drawable/progress_knowledge"
-                    android:progress="10"
-                    android:max="100" />
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="🍹" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbSeason" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Сезонка" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Заготовки"
-                android:textSize="14sp"
-                android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- ========== РЯД 3: Сезонка + Зерно ========== -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginEnd="6dp">
-
             <LinearLayout
-                android:id="@+id/cardSeason"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:id="@+id/cellGrain"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@drawable/knowledge_card"
-                android:padding="12dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
+                android:layout_marginStart="6dp">
+                <LinearLayout
+                    android:id="@+id/cardGrain"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="🍹"
-                    android:textSize="48sp"
-                    android:gravity="center" />
-
-                <ProgressBar
-                    android:id="@+id/pbSeason"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:progressDrawable="@drawable/progress_knowledge"
-                    android:progress="30"
-                    android:max="100" />
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="🌰" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbGrain" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Зерно" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Сезонка"
-                android:textSize="14sp"
-                android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp" />
         </LinearLayout>
 
+        <!-- ================= РЯД 4 (Блюда + Вина) ================= -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/row4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="6dp">
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/cardGrain"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:id="@+id/cellDishes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@drawable/knowledge_card"
-                android:padding="12dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
+                android:layout_marginEnd="6dp">
+                <LinearLayout
+                    android:id="@+id/cardDishes"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="🌰"
-                    android:textSize="48sp"
-                    android:gravity="center" />
-
-                <ProgressBar
-                    android:id="@+id/pbGrain"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:progressDrawable="@drawable/progress_knowledge"
-                    android:progress="20"
-                    android:max="100" />
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="🍲" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbDishes" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Блюда" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Зерно"
-                android:textSize="14sp"
-                android:textStyle="bold|italic"
-                android:textColor="@color/color_text_dark"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp" />
+            <LinearLayout
+                android:id="@+id/cellWines"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="6dp">
+                <LinearLayout
+                    android:id="@+id/cardWines"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/knowledge_card"
+                    android:padding="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="🍾" android:textSize="48sp" android:gravity="center" />
+                    <ProgressBar android:id="@+id/pbWines" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:progressDrawable="@drawable/progress_knowledge" android:progress="0" android:max="100" />
+                </LinearLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Вина" android:textSize="14sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" android:layout_gravity="center" android:layout_marginTop="6dp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

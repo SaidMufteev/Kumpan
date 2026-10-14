@@ -13,6 +13,7 @@
         android:background="@drawable/task_card"
         android:padding="16dp">
 
+        <!-- Чекбокс (визуальный) -->
         <CheckBox
             android:id="@+id/cbTask"
             android:layout_width="wrap_content"
@@ -21,17 +22,50 @@
             android:clickable="false"
             android:focusable="false" />
 
-        <TextView
-            android:id="@+id/tvTaskText"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Задача"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"
-            android:textColor="@color/color_text_dark" />
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tvTaskText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Задача"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_text_dark" />
+
+            <!-- Метка "Срочно" и статус -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/tvUrgent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="СРОЧНО"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_red"
+                    android:visibility="gone"
+                    android:layout_marginEnd="10dp"/>
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="На проверке"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/color_gray"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
