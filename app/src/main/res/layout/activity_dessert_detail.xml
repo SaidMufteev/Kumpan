@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- Верхняя панель: кнопка "Назад" + название -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Назад"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_white"
+                android:background="@drawable/back_button_bg"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/tvDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Название"
+                android:textSize="22sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_text_dark"
+                android:gravity="end" />
+
+        </LinearLayout>
+
+        <!-- СОСТАВ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Состав:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- СРОК ХРАНЕНИЯ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Срок хранения:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tvStorage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="15sp"
+                android:textColor="@color/color_text_dark" />
+
+        </LinearLayout>
+
+        <!-- АЛЛЕРГЕНЫ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Аллергены:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tvAllergens"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="15sp"
+                android:textColor="@color/color_text_dark" />
+
+        </LinearLayout>
+
+        <!-- ОПИСАНИЕ ДЛЯ ГОСТЯ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Описание для гостя:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvGuestDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                android:textColor="@color/color_text_dark" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

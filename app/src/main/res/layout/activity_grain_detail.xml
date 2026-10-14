@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- Верхняя панель -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Назад"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_white"
+                android:background="@drawable/back_button_bg"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/tvDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Название"
+                android:textSize="22sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_text_dark"
+                android:gravity="end" />
+
+        </LinearLayout>
+
+        <!-- ===== СОСТАВ (только для блендов, по умолчанию скрыт) ===== -->
+        <LinearLayout
+            android:id="@+id/sectionComposition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Состав:"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_gray"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/task_card"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvComposition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_dark" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== ПРОИСХОЖДЕНИЕ (для сортов) ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Происхождение:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tvOrigin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="15sp"
+                android:textColor="@color/color_text_dark" />
+
+        </LinearLayout>
+
+        <!-- ===== ОБРАБОТКА ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Обработка:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tvProcessing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="15sp"
+                android:textColor="@color/color_text_dark" />
+
+        </LinearLayout>
+
+        <!-- ===== ПРОФИЛЬ ВКУСА ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Профиль вкуса:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <!-- Тело -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Тело:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_text_dark" />
+
+                <TextView
+                    android:id="@+id/tvBody"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="—"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+
+            <!-- Кислотность -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Кислотность:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_text_dark" />
+
+                <TextView
+                    android:id="@+id/tvAcidity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="—"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+
+            <!-- Сладость -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Сладость:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_text_dark" />
+
+                <TextView
+                    android:id="@+id/tvSweetness"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="—"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+
+            <!-- Горечь -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Горечь:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_text_dark" />
+
+                <TextView
+                    android:id="@+id/tvBitterness"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="—"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+
+            <!-- Послевкусие -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Послевкусие:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_text_dark" />
+
+                <TextView
+                    android:id="@+id/tvAftertaste"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="—"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_dark" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ===== БУКЕТ ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Букет:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tvBouquet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                android:textColor="@color/color_text_dark" />
+
+        </LinearLayout>
+
+        <!-- ===== СПОСОБЫ ЗАВАРИВАНИЯ ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Способы заваривания:"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/task_card"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvBrewMethods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="15sp"
+                android:textColor="@color/color_text_dark" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

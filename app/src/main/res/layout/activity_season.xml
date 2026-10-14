@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background"
+    android:paddingTop="40dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <!-- Верхняя панель: кнопка "Назад" + заголовок -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Назад"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_white"
+            android:background="@drawable/back_button_bg"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Сезонка"
+            android:textSize="22sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_text_dark"
+            android:gravity="end" />
+
+    </LinearLayout>
+
+    <!-- ===== Ряд 1: Лето + Осень ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <!-- Лето -->
+        <LinearLayout
+            android:id="@+id/btnSummer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/season_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="☀️"
+                android:textSize="64sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Лето"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_dark_green"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Осень -->
+        <LinearLayout
+            android:id="@+id/btnAutumn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/season_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginStart="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍂"
+                android:textSize="64sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Осень"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_dark_green"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ===== Ряд 2: Зима + Весна ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Зима -->
+        <LinearLayout
+            android:id="@+id/btnWinter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/season_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❄️"
+                android:textSize="64sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Зима"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_dark_green"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Весна -->
+        <LinearLayout
+            android:id="@+id/btnSpring"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/season_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginStart="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🌷"
+                android:textSize="64sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Весна"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_dark_green"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

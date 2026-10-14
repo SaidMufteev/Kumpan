@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background"
+    android:paddingTop="40dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <!-- Заголовок -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_title"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_text_dark"
+        android:layout_marginBottom="20dp" />
+
+    <!-- ===== Карточка профиля ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/profile_card"
+        android:padding="20dp"
+        android:layout_marginBottom="30dp">
+
+        <!-- Аватар -->
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@android:drawable/ic_menu_myplaces"
+            android:background="@drawable/avatar_circle"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="16dp" />
+
+        <!-- ФИО + должность -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Муфтеев Саид"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_text_dark" />
+
+            <TextView
+                android:id="@+id/tvProfilePosition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Барбек - помощник бариста"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:textColor="@color/color_gray"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ===== Разделитель ===== -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_light_gray"
+        android:layout_marginBottom="20dp" />
+
+    <!-- ===== Уведомления ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Уведомления"
+            android:textSize="17sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_text_dark" />
+
+        <Switch
+            android:id="@+id/switchNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+
+    </LinearLayout>
+
+    <!-- ===== Язык приложения ===== -->
+    <LinearLayout
+        android:id="@+id/rowLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Язык приложения"
+            android:textSize="17sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_text_dark" />
+
+        <TextView
+            android:id="@+id/tvLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Русский"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:textColor="@color/color_gray"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_gray" />
+
+    </LinearLayout>
+
+</LinearLayout>

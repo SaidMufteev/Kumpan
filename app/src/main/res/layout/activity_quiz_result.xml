@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <!-- Заголовок -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Твой результат"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_text_dark"
+        android:layout_marginBottom="40dp" />
+
+    <!-- Круг с результатом -->
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 из 9"
+        android:textSize="48sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_white"
+        android:background="@drawable/card_dark"
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Процент -->
+    <TextView
+        android:id="@+id/tvPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0%"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_dark_green"
+        android:layout_marginBottom="40dp" />
+
+    <!-- Кнопки -->
+    <Button
+        android:id="@+id/btnRetry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Пройти заново"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:backgroundTint="@color/color_light_green"
+        android:textColor="@color/color_dark_green"
+        android:padding="16dp"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Выйти"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:backgroundTint="@color/color_black"
+        android:textColor="@color/color_light_green"
+        android:padding="16dp" />
+
+</LinearLayout>

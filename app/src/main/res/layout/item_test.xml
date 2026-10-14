@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/task_card"
+        android:padding="20dp">
+
+        <!-- Название темы -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTestName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Алко"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/color_text_dark" />
+
+            <TextView
+                android:id="@+id/tvTestCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9 вопросов"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:textColor="@color/color_gray"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <!-- Кнопка "Начать" -->
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Начать"
+            android:textSize="14sp"
+            android:textStyle="bold|italic"
+            android:backgroundTint="@color/color_light_green"
+            android:textColor="@color/color_dark_green"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

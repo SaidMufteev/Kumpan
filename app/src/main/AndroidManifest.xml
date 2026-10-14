@@ -29,6 +29,40 @@
         <!-- RegisterActivity -->
         <activity android:name=".RegisterActivity" android:exported="false" />
 
+        <!-- TtkListActivity — список ТТК -->
+        <activity
+            android:name=".TtkListActivity"
+            android:exported="false" />
+
+        <!-- CocktailDetailActivity — карточка коктейля -->
+        <activity
+            android:name=".CocktailDetailActivity"
+            android:exported="false" />
+
+        <!-- DessertDetailActivity — карточка десерта -->
+        <activity
+            android:name=".DessertDetailActivity"
+            android:exported="false" />
+
+        <!-- SeasonActivity — выбор сезона -->
+        <activity
+            android:name=".SeasonActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".GrainDetailActivity"
+            android:exported="false" />
+
+        <!-- Активность вопросов теста -->
+        <activity
+            android:name=".QuizActivity"
+            android:exported="false" />
+
+        <!-- Активность результата теста -->
+        <activity
+            android:name=".QuizResultActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
