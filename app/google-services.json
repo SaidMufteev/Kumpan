@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "84912464647",
+    "project_id": "kumpan-7213c",
+    "storage_bucket": "kumpan-7213c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84912464647:android:03445fb4b6ba72a98a5ba2",
+        "android_client_info": {
+          "package_name": "com.example.kumpan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuqRYmePySklkKEj9uMtx0im5KWk6feTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
