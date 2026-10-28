@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/task_card"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp">
+
+    <CheckBox
+        android:id="@+id/cbEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/color_dark_green" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvEmpName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Иванов Иван"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_text_dark" />
+
+        <TextView
+            android:id="@+id/tvEmpRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Бармен (Код: 4444)"
+            android:textSize="12sp"
+            android:textColor="@color/color_gray" />
+    </LinearLayout>
+</LinearLayout>

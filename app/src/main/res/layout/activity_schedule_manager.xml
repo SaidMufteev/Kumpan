@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background"
+    android:paddingTop="40dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <!-- Верхняя панель -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Назад"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/color_white"
+            android:background="@drawable/back_button_bg"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="8dp" android:paddingBottom="8dp"
+            android:clickable="true" android:focusable="true" />
+        <TextView
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="График" android:textSize="22sp" android:textStyle="bold|italic"
+            android:textColor="@color/color_text_dark" android:gravity="end" />
+    </LinearLayout>
+
+    <!-- Календарь на неделю -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/profile_card"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/btnPrevWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt;"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/color_dark_green" />
+
+        <LinearLayout
+            android:id="@+id/layoutDays"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/btnNextWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&gt;"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/color_dark_green" />
+    </LinearLayout>
+
+    <!-- Выбор отдела -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+        <Button android:id="@+id/btnDeptBar" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Бар" android:backgroundTint="@color/color_light_green" android:textColor="@color/color_dark_green" android:layout_marginEnd="4dp" />
+        <Button android:id="@+id/btnDeptHall" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Офики" android:backgroundTint="@color/color_white" android:textColor="@color/color_text_dark" android:layout_marginEnd="4dp" />
+        <Button android:id="@+id/btnDeptKitchen" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Кухня" android:backgroundTint="@color/color_white" android:textColor="@color/color_text_dark" />
+    </LinearLayout>
+
+    <!-- Время -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+        <EditText
+            android:id="@+id/etStartTime"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:hint="10:00" android:textSize="16sp" android:gravity="center"
+            android:background="@drawable/edit_text_border" android:layout_marginEnd="8dp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="до" android:textColor="@color/color_text_dark" android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/etEndTime"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:hint="22:00" android:textSize="16sp" android:gravity="center"
+            android:background="@drawable/edit_text_border" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Выберите сотрудников:" android:textSize="14sp" android:textStyle="bold"
+        android:textColor="@color/color_text_dark" android:layout_marginBottom="8dp" />
+
+    <!-- Список сотрудников -->
+    <ListView
+        android:id="@+id/listEmployees"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
+
+    <Button
+        android:id="@+id/btnSaveSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сохранить смену"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:backgroundTint="@color/color_light_green"
+        android:textColor="@color/color_dark_green"
+        android:padding="16dp"
+        android:layout_marginTop="8dp" />
+</LinearLayout>
