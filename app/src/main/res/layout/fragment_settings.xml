@@ -204,4 +204,29 @@
             android:textStyle="bold"
             android:textColor="@color/color_gray" />
     </LinearLayout>
+
+    <!-- Мой заработок -->
+    <LinearLayout
+        android:id="@+id/rowSalary"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingTop="12dp" android:paddingBottom="12dp"
+        android:clickable="true" android:focusable="true">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="Мой заработок" android:textSize="17sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/color_gray" />
+    </LinearLayout>
+
+    <!-- Кто на смене (Менеджер/Шеф) -->
+    <LinearLayout
+        android:id="@+id/rowActiveShifts"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingTop="12dp" android:paddingBottom="12dp"
+        android:visibility="gone" android:clickable="true" android:focusable="true">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="Кто на смене" android:textSize="17sp" android:textStyle="bold|italic" android:textColor="@color/color_text_dark" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/color_gray" />
+    </LinearLayout>
+
 </LinearLayout>

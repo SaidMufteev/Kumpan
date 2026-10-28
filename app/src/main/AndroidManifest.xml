@@ -56,5 +56,10 @@
         <!-- Экран управления графиком -->
         <activity android:name=".ScheduleManagerActivity" android:exported="false" />
 
+        <activity android:name=".QuizReviewActivity" android:exported="false" />
+
+        <activity android:name=".SalaryActivity" android:exported="false" />
+        <activity android:name=".ActiveShiftsActivity" android:exported="false" />
+
     </application>
 </manifest>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/task_card"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/tvReviewQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Текст вопроса"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/color_text_dark"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvUserAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ваш ответ"
+        android:textSize="15sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvCorrectAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Правильный ответ"
+        android:textSize="15sp"
+        android:textColor="@color/color_dark_green"
+        android:textStyle="bold"
+        android:visibility="gone" />
+</LinearLayout>

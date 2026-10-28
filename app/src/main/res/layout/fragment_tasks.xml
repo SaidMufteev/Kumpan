@@ -25,7 +25,6 @@
             android:textStyle="bold|italic"
             android:textColor="@color/color_text_dark" />
 
-        <!-- Кнопка переключения режимов (видна только менеджеру/шефу) -->
         <Button
             android:id="@+id/btnToggleMode"
             android:layout_width="wrap_content"
@@ -64,4 +63,18 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:scrollbars="none" />
+
+    <!-- Кнопка добавления задачи (только для менеджера/шефа) -->
+    <Button
+        android:id="@+id/btnAddTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+ Добавить задачу"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/color_light_green"
+        android:textColor="@color/color_dark_green"
+        android:padding="16dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 </LinearLayout>

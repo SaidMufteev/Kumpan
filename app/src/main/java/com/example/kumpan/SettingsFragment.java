@@ -22,7 +22,7 @@ public class SettingsFragment extends Fragment {
     private static final String KEY_NOTIFICATIONS = "notifications_enabled";
 
     private Switch switchNotifications;
-    private LinearLayout rowLanguage, rowEmployees, rowAddSchedule;
+    private LinearLayout rowLanguage, rowEmployees, rowAddSchedule, rowSalary, rowActiveShifts;
     private TextView tvLanguage;
 
     @Override
@@ -34,6 +34,8 @@ public class SettingsFragment extends Fragment {
         rowLanguage = view.findViewById(R.id.rowLanguage);
         rowEmployees = view.findViewById(R.id.rowEmployees);
         rowAddSchedule = view.findViewById(R.id.rowAddSchedule);
+        rowSalary = view.findViewById(R.id.rowSalary);
+        rowActiveShifts = view.findViewById(R.id.rowActiveShifts);
         tvLanguage = view.findViewById(R.id.tvLanguage);
 
         TextView tvProfileName = view.findViewById(R.id.tvProfileName);
@@ -43,9 +45,10 @@ public class SettingsFragment extends Fragment {
 
         String userName = prefs.getString("user_name", "Неизвестно");
         String userRole = prefs.getString("user_role", "guest");
+        String userPosition = prefs.getString("user_position", "Сотрудник");
 
         tvProfileName.setText(userName);
-        tvProfilePosition.setText(getPositionByRole(userRole));
+        tvProfilePosition.setText(userPosition);
 
         boolean notificationsEnabled = prefs.getBoolean(KEY_NOTIFICATIONS, true);
         switchNotifications.setChecked(notificationsEnabled);
@@ -53,42 +56,28 @@ public class SettingsFragment extends Fragment {
             prefs.edit().putBoolean(KEY_NOTIFICATIONS, isChecked).apply();
         });
 
-        rowLanguage.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Выбор языка (в разработке)", Toast.LENGTH_SHORT).show();
-        });
+        rowLanguage.setOnClickListener(v -> Toast.makeText(getContext(), "Выбор языка (в разработке)", Toast.LENGTH_SHORT).show());
 
-        // Логика для менеджера и шефа
+        // Зарплата
+        rowSalary.setOnClickListener(v -> startActivity(new Intent(getContext(), SalaryActivity.class)));
+
+        // Кто на смене (только менеджер/шеф)
+        if ("manager".equals(userRole) || "chef".equals(userRole)) {
+            rowActiveShifts.setVisibility(View.VISIBLE);
+        }
+        rowActiveShifts.setOnClickListener(v -> startActivity(new Intent(getContext(), ActiveShiftsActivity.class)));
+
+        // Управление
         if ("manager".equals(userRole)) {
             rowEmployees.setVisibility(View.VISIBLE);
             rowAddSchedule.setVisibility(View.VISIBLE);
         } else if ("chef".equals(userRole)) {
-            rowEmployees.setVisibility(View.GONE); // Шеф не управляет сотрудниками
-            rowAddSchedule.setVisibility(View.VISIBLE); // Но составляет график кухни
-        } else {
-            rowEmployees.setVisibility(View.GONE);
-            rowAddSchedule.setVisibility(View.GONE);
+            rowAddSchedule.setVisibility(View.VISIBLE);
         }
 
-        rowEmployees.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), EmployeeListActivity.class));
-        });
-
-        rowAddSchedule.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), ScheduleManagerActivity.class));
-        });
+        rowEmployees.setOnClickListener(v -> startActivity(new Intent(getContext(), EmployeeListActivity.class)));
+        rowAddSchedule.setOnClickListener(v -> startActivity(new Intent(getContext(), ScheduleManagerActivity.class)));
 
         return view;
-    }
-
-    private String getPositionByRole(String role) {
-        switch (role) {
-            case "manager":   return "Менеджер";
-            case "waiter":    return "Официант";
-            case "bartender": return "Бармен";
-            case "cook":      return "Повар";
-            case "chef":      return "Шеф-повар";
-            case "pending":   return "Ожидает назначения";
-            default:          return "Сотрудник";
-        }
     }
 }

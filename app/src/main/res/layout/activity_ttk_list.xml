@@ -9,14 +9,12 @@
     android:paddingEnd="16dp"
     android:paddingBottom="16dp">
 
-    <!-- Верхняя панель: кнопка "Назад" + заголовок -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginBottom="20dp">
-
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
@@ -32,7 +30,6 @@
             android:paddingBottom="8dp"
             android:clickable="true"
             android:focusable="true" />
-
         <TextView
             android:id="@+id/tvListTitle"
             android:layout_width="0dp"
@@ -43,10 +40,8 @@
             android:textStyle="bold|italic"
             android:textColor="@color/color_text_dark"
             android:gravity="end" />
-
     </LinearLayout>
 
-    <!-- Список -->
     <ListView
         android:id="@+id/listItems"
         android:layout_width="match_parent"
@@ -56,4 +51,17 @@
         android:dividerHeight="0dp"
         android:scrollbars="none" />
 
+    <!-- Кнопка добавления ТТК (только для менеджера/шефа) -->
+    <Button
+        android:id="@+id/btnAddTtk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+ Добавить в базу"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/color_light_green"
+        android:textColor="@color/color_dark_green"
+        android:padding="16dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 </LinearLayout>

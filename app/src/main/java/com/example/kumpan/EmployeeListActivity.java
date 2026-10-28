@@ -24,6 +24,7 @@ public class EmployeeListActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView tvEmpty;
     private List<Employee> employees = new ArrayList<>();
+    private List<Position> positions = new ArrayList<>();
     private EmployeeAdapter adapter;
 
     @Override
@@ -35,107 +36,94 @@ public class EmployeeListActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
 
-        TextView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
         adapter = new EmployeeAdapter();
         listEmployees.setAdapter(adapter);
 
-        // Клик — диалог выбора роли
         listEmployees.setOnItemClickListener((parent, view, position, id) -> {
-            showRoleDialog(employees.get(position));
+            showPositionDialog(employees.get(position));
         });
 
-        loadEmployees();
+        loadPositions();
+    }
+
+    private void loadPositions() {
+        progressBar.setVisibility(View.VISIBLE);
+        FirebaseHelper.loadPositions().addOnSuccessListener(querySnapshot -> {
+            positions.clear();
+            for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                String title = doc.getString("title");
+                String role = doc.getString("role");
+                Long rate = doc.getLong("rate");
+                positions.add(new Position(title, role, rate != null ? rate : 0));
+            }
+            loadEmployees();
+        });
     }
 
     private void loadEmployees() {
-        progressBar.setVisibility(View.VISIBLE);
         tvEmpty.setVisibility(View.GONE);
+        FirebaseHelper.loadAllUsers().addOnSuccessListener(querySnapshot -> {
+            progressBar.setVisibility(View.GONE);
+            employees.clear();
 
-        FirebaseHelper.loadAllUsers()
-                .addOnSuccessListener(querySnapshot -> {
-                    progressBar.setVisibility(View.GONE);
-                    employees.clear();
+            for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                String login = doc.getId();
+                String fullName = doc.getString("fullName");
+                String positionTitle = doc.getString("positionTitle");
 
-                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
-                        String login = doc.getId();
-                        String fullName = doc.getString("fullName");
-                        String role = doc.getString("role");
-                        employees.add(new Employee(
-                                login,
-                                fullName != null ? fullName : "Без имени",
-                                role != null ? role : "pending"
-                        ));
-                    }
+                if (positionTitle == null) positionTitle = "Ожидает назначения";
 
-                    if (employees.isEmpty()) tvEmpty.setVisibility(View.VISIBLE);
-                    adapter.notifyDataSetChanged();
-                })
-                .addOnFailureListener(e -> {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(this, "Ошибка загрузки: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                });
+                employees.add(new Employee(login, fullName != null ? fullName : "Без имени", positionTitle));
+            }
+
+            if (employees.isEmpty()) tvEmpty.setVisibility(View.VISIBLE);
+            adapter.notifyDataSetChanged();
+        });
     }
 
-    private void showRoleDialog(Employee emp) {
-        final String[] roles = {"Официант", "Бармен", "Повар", "Шеф-повар", "Менеджер"};
-        final String[] roleKeys = {"waiter", "bartender", "cook", "chef", "manager"};
+    private void showPositionDialog(Employee emp) {
+        if (positions.isEmpty()) return;
 
-        int checkedItem = -1;
-        for (int i = 0; i < roleKeys.length; i++) {
-            if (roleKeys[i].equals(emp.role)) {
-                checkedItem = i;
-                break;
-            }
+        String[] titles = new String[positions.size()];
+        for (int i = 0; i < positions.size(); i++) {
+            titles[i] = positions.get(i).title + " (" + positions.get(i).rate + " ₽/ч)";
         }
 
         new AlertDialog.Builder(this)
-                .setTitle(emp.fullName + " (" + emp.login + ")")
-                .setSingleChoiceItems(roles, checkedItem, (dialog, which) -> {
-                    updateRole(emp, roleKeys[which]);
-                    dialog.dismiss();
+                .setTitle("Назначить: " + emp.fullName)
+                .setItems(titles, (dialog, which) -> {
+                    Position selectedPos = positions.get(which);
+                    FirebaseHelper.assignPositionToUser(emp.login, selectedPos.role, selectedPos.rate, selectedPos.title)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(this, "Назначено: " + selectedPos.title, Toast.LENGTH_SHORT).show();
+                                loadEmployees();
+                            });
                 })
                 .setNegativeButton("Отмена", null)
                 .show();
     }
 
-    private void updateRole(Employee emp, String newRole) {
-        FirebaseHelper.updateUserRole(emp.login, newRole)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Роль обновлена: " + getRoleName(newRole),
-                            Toast.LENGTH_SHORT).show();
-                    loadEmployees();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Ошибка: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                });
+    private static class Employee {
+        String login, fullName, positionTitle;
+        Employee(String login, String fullName, String positionTitle) {
+            this.login = login; this.fullName = fullName; this.positionTitle = positionTitle;
+        }
     }
 
-    private static class Employee {
-        String login;
-        String fullName;
-        String role;
-
-        Employee(String login, String fullName, String role) {
-            this.login = login;
-            this.fullName = fullName;
-            this.role = role;
-        }
+    private static class Position {
+        String title, role; long rate;
+        Position(String title, String role, long rate) { this.title = title; this.role = role; this.rate = rate; }
     }
 
     private class EmployeeAdapter extends ArrayAdapter<Employee> {
-        EmployeeAdapter() {
-            super(EmployeeListActivity.this, 0, employees);
-        }
+        EmployeeAdapter() { super(EmployeeListActivity.this, 0, employees); }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(EmployeeListActivity.this)
-                        .inflate(R.layout.item_employee, parent, false);
+                convertView = LayoutInflater.from(EmployeeListActivity.this).inflate(R.layout.item_employee, parent, false);
             }
             Employee emp = employees.get(position);
             TextView tvFullName = convertView.findViewById(R.id.tvFullName);
@@ -144,21 +132,9 @@ public class EmployeeListActivity extends AppCompatActivity {
 
             tvFullName.setText(emp.fullName);
             tvLogin.setText("Код: " + emp.login);
-            tvRole.setText(getRoleName(emp.role));
+            tvRole.setText(emp.positionTitle);
 
             return convertView;
-        }
-    }
-
-    private String getRoleName(String role) {
-        switch (role) {
-            case "waiter":    return "Официант";
-            case "bartender": return "Бармен";
-            case "cook":      return "Повар";
-            case "chef":      return "Шеф-повар";
-            case "manager":   return "Менеджер";
-            case "pending":   return "⚠ Ожидает назначения";
-            default:          return role;
         }
     }
 }

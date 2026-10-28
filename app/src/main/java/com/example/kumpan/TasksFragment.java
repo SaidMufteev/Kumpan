@@ -10,8 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ public class TasksFragment extends Fragment {
     private ListView listTasks;
     private ProgressBar progressBar;
     private TextView tvEmptyTasks;
-    private Button btnToggleMode;
+    private Button btnToggleMode, btnAddTask;
     private List<Task> taskList = new ArrayList<>();
     private TaskAdapter adapter;
 
@@ -46,6 +48,7 @@ public class TasksFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBarTasks);
         tvEmptyTasks = view.findViewById(R.id.tvEmptyTasks);
         btnToggleMode = view.findViewById(R.id.btnToggleMode);
+        btnAddTask = view.findViewById(R.id.btnAddTask);
 
         SharedPreferences prefs = requireContext().getSharedPreferences("KumpanPrefs", MODE_PRIVATE);
         currentRole = prefs.getString("user_role", "guest");
@@ -53,6 +56,7 @@ public class TasksFragment extends Fragment {
 
         if ("manager".equals(currentRole) || "chef".equals(currentRole)) {
             btnToggleMode.setVisibility(View.VISIBLE);
+            btnAddTask.setVisibility(View.VISIBLE);
         }
 
         btnToggleMode.setOnClickListener(v -> {
@@ -61,6 +65,8 @@ public class TasksFragment extends Fragment {
             tvEmptyTasks.setText(isReviewMode ? "Нет задач на проверке" : "У вас нет активных задач");
             loadTasks();
         });
+
+        btnAddTask.setOnClickListener(v -> showAddTaskDialog());
 
         adapter = new TaskAdapter();
         listTasks.setAdapter(adapter);
@@ -73,7 +79,7 @@ public class TasksFragment extends Fragment {
                 if ("pending".equals(task.status) || "rejected".equals(task.status)) {
                     showCompleteTaskDialog(task);
                 } else {
-                    Toast.makeText(getContext(), "Задача уже на проверке", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Задача уже на проверке", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -129,19 +135,67 @@ public class TasksFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getContext(), "Ошибка: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(requireContext(), "Ошибка: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
     }
 
-    // === ЛОГИКА СОТРУДНИКА ===
-    private void showCompleteTaskDialog(Task task) {
-        new AlertDialog.Builder(getContext())
-                .setTitle(task.text)
-                .setMessage("Вы уверены, что задача выполнена?")
-                .setPositiveButton("Да, выполнено", (dialog, which) -> {
-                    FirebaseHelper.updateTaskStatus(task.id, "completed")
+    // === СОЗДАНИЕ ЗАДАЧИ (МЕНЕДЖЕР/ШЕФ) ===
+    private void showAddTaskDialog() {
+        LinearLayout layout = new LinearLayout(requireContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(40, 20, 40, 20);
+
+        EditText etText = new EditText(requireContext());
+        etText.setHint("Текст задачи");
+        layout.addView(etText);
+
+        TextView tvRole = new TextView(requireContext());
+        tvRole.setText("Кому назначить:");
+        tvRole.setPadding(0, 20, 0, 0);
+        layout.addView(tvRole);
+
+        Spinner spRole = new Spinner(requireContext());
+        String[] roles = {"all", "waiter", "bartender", "cook"};
+        spRole.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, roles));
+        layout.addView(spRole);
+
+        TextView tvDept = new TextView(requireContext());
+        tvDept.setText("Зона (Отдел):");
+        tvDept.setPadding(0, 20, 0, 0);
+        layout.addView(tvDept);
+
+        Spinner spDept = new Spinner(requireContext());
+        String[] depts = {"bar", "hall", "kitchen"};
+        spDept.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, depts));
+        layout.addView(spDept);
+
+        TextView tvPriority = new TextView(requireContext());
+        tvPriority.setText("Приоритет:");
+        tvPriority.setPadding(0, 20, 0, 0);
+        layout.addView(tvPriority);
+
+        Spinner spPriority = new Spinner(requireContext());
+        String[] priorities = {"normal", "urgent"};
+        spPriority.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, priorities));
+        layout.addView(spPriority);
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Новая задача")
+                .setView(layout)
+                .setPositiveButton("Создать", (dialog, which) -> {
+                    String text = etText.getText().toString().trim();
+                    String role = spRole.getSelectedItem().toString();
+                    String dept = spDept.getSelectedItem().toString();
+                    String priority = spPriority.getSelectedItem().toString();
+
+                    if (text.isEmpty()) {
+                        Toast.makeText(requireContext(), "Введите текст задачи", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    FirebaseHelper.createTask(text, role, dept, priority, currentLogin)
                             .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(getContext(), "Задача отправлена на проверку!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireContext(), "Задача создана!", Toast.LENGTH_SHORT).show();
                                 loadTasks();
                             });
                 })
@@ -149,9 +203,25 @@ public class TasksFragment extends Fragment {
                 .show();
     }
 
-    // === ЛОГИКА МЕНЕДЖЕРА ===
+    // === ЛОГИКА СОТРУДНИКА ===
+    private void showCompleteTaskDialog(Task task) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(task.text)
+                .setMessage("Вы уверены, что задача выполнена?")
+                .setPositiveButton("Да, выполнено", (dialog, which) -> {
+                    FirebaseHelper.updateTaskStatus(task.id, "completed")
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(requireContext(), "Задача отправлена на проверку!", Toast.LENGTH_SHORT).show();
+                                loadTasks();
+                            });
+                })
+                .setNegativeButton("Отмена", null)
+                .show();
+    }
+
+    // === ЛОГИКА ПРОВЕРКИ ===
     private void showReviewDialog(Task task) {
-        new AlertDialog.Builder(getContext())
+        new AlertDialog.Builder(requireContext())
                 .setTitle(task.text)
                 .setMessage("Сотрудник выполнил эту задачу. Принять?")
                 .setPositiveButton("Принять", (dialog, which) -> approveTask(task))
@@ -163,17 +233,17 @@ public class TasksFragment extends Fragment {
     private void approveTask(Task task) {
         FirebaseHelper.updateTaskStatus(task.id, "approved")
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(getContext(), "Задача принята!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Задача принята!", Toast.LENGTH_SHORT).show();
                     loadTasks();
                 });
     }
 
     private void showRejectDialog(Task task) {
-        EditText etComment = new EditText(getContext());
+        EditText etComment = new EditText(requireContext());
         etComment.setHint("Причина отклонения");
         etComment.setPadding(40, 20, 40, 20);
 
-        new AlertDialog.Builder(getContext())
+        new AlertDialog.Builder(requireContext())
                 .setTitle("Отклонить задачу")
                 .setView(etComment)
                 .setPositiveButton("Отправить", (dialog, which) -> {
@@ -181,7 +251,7 @@ public class TasksFragment extends Fragment {
                     if (comment.isEmpty()) comment = "Без комментария";
                     FirebaseHelper.rejectTask(task.id, comment, currentLogin)
                             .addOnSuccessListener(aVoid -> {
-                                Toast.makeText(getContext(), "Задача отклонена", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireContext(), "Задача отклонена", Toast.LENGTH_SHORT).show();
                                 loadTasks();
                             });
                 })
@@ -209,7 +279,7 @@ public class TasksFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext())
+                convertView = LayoutInflater.from(requireContext())
                         .inflate(R.layout.item_task, parent, false);
             }
             Task task = taskList.get(position);

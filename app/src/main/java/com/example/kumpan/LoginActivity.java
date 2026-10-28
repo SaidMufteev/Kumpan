@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
 
+        // Скрываем ошибки при вводе
         TextWatcher textWatcher = new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -45,21 +46,28 @@ public class LoginActivity extends AppCompatActivity {
         etLogin.addTextChangedListener(textWatcher);
         etPassword.addTextChangedListener(textWatcher);
 
+        // Кнопка "Войти"
         btnLogin.setOnClickListener(v -> onLoginClick());
 
+        // Кнопка "Зарегистрироваться"
         btnRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
+        // "Возникли трудности?"
         tvForgotPassword.setOnClickListener(v -> {
             Toast.makeText(this, "Обратитесь к администратору", Toast.LENGTH_SHORT).show();
         });
     }
 
+    /**
+     * Обработка нажатия на кнопку "Войти"
+     */
     private void onLoginClick() {
         String login = etLogin.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
+        // Проверки на пустоту
         if (login.isEmpty()) {
             tvLoginError.setVisibility(View.VISIBLE);
             return;
@@ -69,40 +77,51 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Проверка: 4 цифры
         if (login.length() != 4 || password.length() != 4) {
             tvLoginError.setText("Код и пароль — 4 цифры");
             tvLoginError.setVisibility(View.VISIBLE);
             return;
         }
 
+        // Проверка: логин = пароль
         if (!login.equals(password)) {
             tvLoginError.setText("Код и пароль должны совпадать");
             tvLoginError.setVisibility(View.VISIBLE);
             return;
         }
 
+        // Блокируем кнопку и показываем, что идет загрузка
         btnLogin.setEnabled(false);
-        Toast.makeText(this, "Проверка...", Toast.LENGTH_SHORT).show();
+        btnLogin.setText("Загрузка...");
 
+        // Запрос к Firestore
         FirebaseHelper.loadUser(login)
                 .addOnSuccessListener(documentSnapshot -> {
                     btnLogin.setEnabled(true);
+                    btnLogin.setText("Войти");
                     handleUserResponse(documentSnapshot, login);
                 })
                 .addOnFailureListener(e -> {
                     btnLogin.setEnabled(true);
+                    btnLogin.setText("Войти");
                     tvLoginError.setText("Ошибка подключения. Проверьте интернет");
                     tvLoginError.setVisibility(View.VISIBLE);
                 });
     }
 
+    /**
+     * Обработка ответа от Firestore
+     */
     private void handleUserResponse(DocumentSnapshot doc, String login) {
+        // Пользователь не найден
         if (!doc.exists()) {
             tvLoginError.setText("Код " + login + " не найден. Зарегистрируйтесь");
             tvLoginError.setVisibility(View.VISIBLE);
             return;
         }
 
+        // Проверка роли — pending не пускаем
         String role = doc.getString("role");
         if (role == null || role.equals("pending")) {
             tvLoginError.setText("Роль ещё не назначена. Обратитесь к менеджеру");
@@ -110,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Проверка блокировки (на будущее)
         Long lockedUntil = doc.getLong("lockedUntil");
         if (lockedUntil != null && lockedUntil > System.currentTimeMillis()) {
             long minutesLeft = (lockedUntil - System.currentTimeMillis()) / 60000 + 1;
@@ -118,20 +138,23 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Всё ок — сохраняем данные в SharedPreferences
         String fullName = doc.getString("fullName");
         String photoUrl = doc.getString("photoUrl");
+        String positionTitle = doc.getString("positionTitle"); // Получаем должность
 
-        // СОХРАНЯЕМ ДАННЫЕ ПРИ ВХОДЕ
         SharedPreferences prefs = getSharedPreferences("KumpanPrefs", MODE_PRIVATE);
         prefs.edit()
                 .putString("user_login", login)
                 .putString("user_name", fullName != null ? fullName : "")
                 .putString("user_role", role)
+                .putString("user_position", positionTitle != null ? positionTitle : "Сотрудник")
                 .putString("user_photo", photoUrl != null ? photoUrl : "")
                 .apply();
 
         Toast.makeText(this, "Добро пожаловать, " + fullName + "!", Toast.LENGTH_SHORT).show();
 
+        // Переход на главный экран
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
     }

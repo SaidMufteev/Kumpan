@@ -170,6 +170,18 @@
                 android:textColor="@color/color_light_green" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvShiftTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Смена идет: 00:00:00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_dark_green"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone" />
+
         <Button
             android:id="@+id/btnStartShift" android:layout_width="match_parent" android:layout_height="wrap_content"
             android:text="@string/start_shift" android:textSize="18sp" android:textStyle="bold|italic"

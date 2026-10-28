@@ -1,10 +1,11 @@
 package com.example.kumpan;
 
-public class Question {
+import java.io.Serializable;
 
-    public String text;             // Текст вопроса
-    public String[] options;        // 4 варианта ответа
-    public int correctIndex;        // Номер правильного ответа (0-3)
+public class Question implements Serializable {
+    public String text;
+    public String[] options;
+    public int correctIndex;
 
     public Question(String text, String[] options, int correctIndex) {
         this.text = text;
